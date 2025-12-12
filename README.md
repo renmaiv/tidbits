@@ -1,0 +1,2 @@
+# tidbits
+Design engineering stuff
