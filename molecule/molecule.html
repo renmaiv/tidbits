@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathing Circles Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #000000;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 600px;
+      height: 600px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .circle {
+      animation-timing-function: ease-in-out;
+    }
+
+    /* Sequence 1: Circles 0,1,2,14,15 and 7,8,9 (top and bottom groups) */
+    @keyframes seq1-delay0 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      30% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq1-delay1 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      31% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq1-delay2 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      32% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq1-delay3 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      33% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq1-delay4 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      34% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    /* Sequence 2: Circles 3,12 (right and left inner) */
+    @keyframes seq2-delay0 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      24.5% { transform: translate(var(--tx), var(--ty)); }
+      36.5% { transform: translate(0, 0); }
+      42% { transform: translate(0, 0); }
+      54.5% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq2-delay1 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      24.5% { transform: translate(var(--tx), var(--ty)); }
+      36.5% { transform: translate(0, 0); }
+      42% { transform: translate(0, 0); }
+      56% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    /* Sequence 3: Circles 4,5,6,10,11 (right and left outer) */
+    @keyframes seq3-delay0 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      78% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq3-delay1 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      79% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq3-delay2 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      80% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq3-delay3 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      81% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    /* Dual sequence for circles in both seq1 and seq3 */
+    @keyframes seq1and3-delay0 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      30% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      79% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes seq1and3-delay1 {
+      0% { transform: translate(var(--tx), var(--ty)); }
+      12% { transform: translate(0, 0); }
+      17.5% { transform: translate(0, 0); }
+      31.5% { transform: translate(var(--tx), var(--ty)); }
+      49% { transform: translate(var(--tx), var(--ty)); }
+      61% { transform: translate(0, 0); }
+      66.5% { transform: translate(0, 0); }
+      80.5% { transform: translate(var(--tx), var(--ty)); }
+      100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    @keyframes static {
+      0%, 100% { transform: translate(var(--tx), var(--ty)); }
+    }
+
+    /* Circle 0: -90° (top) - Seq1 */
+    .circle-0 {
+      --tx: 0px;
+      --ty: -200px;
+      animation: seq1-delay0 4s ease-in-out infinite;
+    }
+
+    /* Circle 1: -67.5° - Seq1 */
+    .circle-1 {
+      --tx: 76.54px;
+      --ty: -184.78px;
+      animation: seq1-delay1 4s ease-in-out infinite;
+    }
+
+    /* Circle 2: -45° - Seq1 */
+    .circle-2 {
+      --tx: 141.42px;
+      --ty: -141.42px;
+      animation: seq1-delay2 4s ease-in-out infinite;
+    }
+
+    /* Circle 3: -22.5° - Seq2 */
+    .circle-3 {
+      --tx: 184.78px;
+      --ty: -76.54px;
+      animation: seq2-delay0 4s ease-in-out infinite;
+    }
+
+    /* Circle 4: 0° - Seq3 */
+    .circle-4 {
+      --tx: 200px;
+      --ty: 0px;
+      animation: seq3-delay0 4s ease-in-out infinite;
+    }
+
+    /* Circle 5: 22.5° - Seq3 */
+    .circle-5 {
+      --tx: 184.78px;
+      --ty: 76.54px;
+      animation: seq3-delay1 4s ease-in-out infinite;
+    }
+
+    /* Circle 6: 45° - Seq3 */
+    .circle-6 {
+      --tx: 141.42px;
+      --ty: 141.42px;
+      animation: seq3-delay2 4s ease-in-out infinite;
+    }
+
+    /* Circle 7: 67.5° - Seq1 */
+    .circle-7 {
+      --tx: 76.54px;
+      --ty: 184.78px;
+      animation: seq1-delay3 4s ease-in-out infinite;
+    }
+
+    /* Circle 8: 90° (bottom) - Seq1 */
+    .circle-8 {
+      --tx: 0px;
+      --ty: 200px;
+      animation: seq1-delay4 4s ease-in-out infinite;
+    }
+
+    /* Circle 9: 112.5° - Seq1 */
+    .circle-9 {
+      --tx: -76.54px;
+      --ty: 184.78px;
+      animation: seq1-delay3 4s ease-in-out infinite;
+    }
+
+    /* Circle 10: 135° - Seq3 */
+    .circle-10 {
+      --tx: -141.42px;
+      --ty: 141.42px;
+      animation: seq3-delay3 4s ease-in-out infinite;
+    }
+
+    /* Circle 11: 157.5° - Seq3 */
+    .circle-11 {
+      --tx: -184.78px;
+      --ty: 76.54px;
+      animation: seq3-delay2 4s ease-in-out infinite;
+    }
+
+    /* Circle 12: 180° (left) - Seq2 */
+    .circle-12 {
+      --tx: -200px;
+      --ty: 0px;
+      animation: seq2-delay1 4s ease-in-out infinite;
+    }
+
+    /* Circle 13: 202.5° - Static */
+    .circle-13 {
+      --tx: -184.78px;
+      --ty: -76.54px;
+      animation: static 4s ease-in-out infinite;
+    }
+
+    /* Circle 14: 225° - Seq1 and Seq3 */
+    .circle-14 {
+      --tx: -141.42px;
+      --ty: -141.42px;
+      animation: seq1and3-delay0 4s ease-in-out infinite;
+    }
+
+    /* Circle 15: 247.5° - Seq1 and Seq3 */
+    .circle-15 {
+      --tx: -76.54px;
+      --ty: -184.78px;
+      animation: seq1and3-delay1 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg viewBox="-300 -300 600 600">
+      <circle class="circle circle-0" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-1" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-2" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-3" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-4" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-5" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-6" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-7" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-8" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-9" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-10" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-11" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-12" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-13" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-14" cx="0" cy="0" r="24" fill="white" />
+      <circle class="circle circle-15" cx="0" cy="0" r="24" fill="white" />
+    </svg>
+  </div>
+</body>
+</html>
