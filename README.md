@@ -1,2 +1,2 @@
 # tidbits
-Design engineering stuff
+Cursor / DE
