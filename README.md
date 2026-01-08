@@ -1,2 +1,2 @@
-# tidbits
-Cursor / DE
+# offcuts
+Cursor / DE experiments
