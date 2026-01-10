@@ -4,7 +4,7 @@
 
 I have intentionally added controls (H-10/...) to have more precise contril over animation stages, like "please do the same as for H-10 but for H-13 except more yelllow". .
 
-![Halftone Inspiration](https://raw.githubusercontent.com/hutsul/Frame/main/2543.jpg)
+![Halftone Inspiration](./Frame%202543.jpg)
 
 ```
 Create an interactive gradient morphing demo with these requirements:
